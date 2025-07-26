@@ -48,7 +48,9 @@ Source drivers: file, github, github-ee
 Database drivers: stub, mysql
 ```
 
-## Available Commands
+## Usage of this repository
+
+### Available Commands
 
 ```shell
 $ task               
@@ -66,7 +68,7 @@ task: Available tasks for this project:
 * compose:down:         Docker compose down
 ```
 
-## MySQL Sample
+### MySQL Sample
 
 ```shell
 $ task compose:build
@@ -93,6 +95,6 @@ mysql> SHOW TABLES;
 +-------------------+
 ```
 
-## PostgreSQL Sample
+### PostgreSQL Sample
 
 TODO: Add PostgreSQL sample
