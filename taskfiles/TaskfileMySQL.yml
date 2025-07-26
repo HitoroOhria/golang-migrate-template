@@ -17,7 +17,6 @@ tasks:
   run:
     internal: true
     desc: Run migrate command to mysql
-    dotenv: [ ".env" ]
     cmds:
       - docker compose run --rm migrate -path {{.MIGRATION_DIR}} -database "{{.MYSQL_URL}}" {{.CMD}}
     vars:
@@ -66,6 +65,5 @@ tasks:
 
   connect:
     desc: Connect to mysql
-    dotenv: [ ".env" ]
     cmds:
       - mysql -h {{.MYSQL_LOCAL_HOST}} -u {{.MYSQL_ROOT_USER}} -p{{.MYSQL_ROOT_PASSWORD}} -P {{.MYSQL_LOCAL_PORT}} {{.MYSQL_DATABASE}}
