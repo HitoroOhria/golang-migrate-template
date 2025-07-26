@@ -91,6 +91,8 @@ task: [mysql:run] docker compose run --rm migrate -path migrations -database "my
 20250726122605/u insert_test (23.12025ms)
 
 $ task mysql:connect
+task: [mysql:connect] mysql -h 127.0.0.1 -u root -proot -P 3310 test
+...
 
 mysql> SHOW TABLES;
 +-------------------+
