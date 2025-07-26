@@ -1,9 +1,15 @@
 version: "3"
 
 vars:
+  RUN_SERVICES: migrate
   BACKGROUND_SERVICES: mysql
 
 tasks:
+  build:
+    desc: Docker compose build
+    cmds:
+      - docker compose build {{.RUN_SERVICES}}
+
   up:
     desc: Docker compose up
     cmds:
