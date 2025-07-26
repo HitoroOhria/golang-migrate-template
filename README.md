@@ -45,7 +45,7 @@ Database drivers: stub, mysql
 ## MySQL Sample
 
 ```shell
-$ task composebuild
+$ task compose:build
 
 $ task compose:up
 
