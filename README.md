@@ -48,14 +48,39 @@ Source drivers: file, github, github-ee
 Database drivers: stub, mysql
 ```
 
+## Available Commands
+
+```shell
+$ task               
+task: [default] task -l --sort none
+task: Available tasks for this project:
+* default:              List all available tasks
+* mysql:version:        Run migrate version to mysql
+* mysql:create:         Run migrate create to mysql
+* mysql:up:             Run migrate up to mysql
+* mysql:down:           Run migrate down N to mysql
+* mysql:down:all:       Run migrate down to mysql
+* mysql:connect:        Connect to mysql
+* compose:build:        Docker compose build
+* compose:up:           Docker compose up
+* compose:down:         Docker compose down
+```
+
 ## MySQL Sample
 
 ```shell
 $ task compose:build
+task: [compose:build] docker compose build migrate
+...
 
 $ task compose:up
+task: [compose:up] docker compose up -d mysql
+...
 
 $ task mysql:up
+task: [mysql:run] docker compose run --rm migrate -path migrations -database "mysql://root:root@tcp(mysql:3306)/test" up
+20250726085241/u create_test (16.055083ms)
+20250726122605/u insert_test (23.12025ms)
 
 $ task mysql:connect
 
