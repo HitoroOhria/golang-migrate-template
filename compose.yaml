@@ -1,0 +1,19 @@
+services:
+  migrate:
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - ./migrations:/migrations
+
+  mysql:
+    image: "mysql:8.0"
+    volumes:
+      - mysql:/var/lib/mysql
+    ports:
+      - "3310:3306" # Avoiding conflicts
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: root
+
+volumes:
+  mysql:

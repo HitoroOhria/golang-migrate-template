@@ -1,0 +1,15 @@
+version: "3"
+
+vars:
+  BACKGROUND_SERVICES: mysql
+
+tasks:
+  up:
+    desc: Docker compose up
+    cmds:
+      - docker compose up -d {{.BACKGROUND_SERVICES}}
+
+  down:
+    desc: Docker compose down
+    cmds:
+      - docker compose down {{.BACKGROUND_SERVICES}}

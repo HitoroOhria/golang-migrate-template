@@ -1,0 +1,68 @@
+version: "3"
+
+vars:
+  MYSQL_DATABASE: test
+  MYSQL_LOCAL_HOST: 127.0.0.1
+  MYSQL_CONTAINER_HOST: mysql
+  MYSQL_LOCAL_PORT: 3310
+  MYSQL_CONTAINER_PORT: 3306
+  MYSQL_ROOT_USER: root
+  MYSQL_ROOT_PASSWORD: root
+  MIGRATION_DIR: migrations
+
+tasks:
+  run:
+    internal: true
+    desc: Run migrate command to mysql
+    dotenv: [ ".env" ]
+    cmds:
+      - docker compose run --rm migrate -path {{.MIGRATION_DIR}} -database "{{.MYSQL_URL}}" {{.CMD}}
+    vars:
+      MYSQL_URL: mysql://{{.MYSQL_ROOT_USER}}:{{.MYSQL_ROOT_PASSWORD}}@tcp({{.MYSQL_CONTAINER_HOST}}:{{.MYSQL_CONTAINER_PORT}})/{{.MYSQL_DATABASE}}
+    requires:
+      vars: [ CMD ]
+
+  version:
+    desc: Run migrate version to mysql
+    cmds:
+      - task: run
+        vars:
+          CMD: version
+
+  create:
+    desc: Run migrate create to mysql
+    cmds:
+      - task: run
+        vars:
+          CMD: create -ext sql -dir {{.MIGRATION_DIR}} -tz "Asia/Tokyo" {{.NAME}}
+    requires:
+      vars: [ NAME ]
+
+  up:
+    desc: Run migrate up to mysql
+    cmds:
+      - task: run
+        vars:
+          CMD: up
+
+  down:
+    desc: Run migrate down N to mysql
+    cmds:
+      - task: run
+        vars:
+          CMD: down {{.COUNT}}
+    vars:
+      COUNT: '{{.COUNT | default "1"}}'
+
+  down:all:
+    desc: Run migrate down to mysql
+    cmds:
+      - task: run
+        vars:
+          CMD: down
+
+  connect:
+    desc: Connect to mysql
+    dotenv: [ ".env" ]
+    cmds:
+      - mysql -h {{.MYSQL_LOCAL_HOST}} -u {{.MYSQL_ROOT_USER}} -p{{.MYSQL_ROOT_PASSWORD}} -P {{.MYSQL_LOCAL_PORT}} {{.MYSQL_DATABASE}}

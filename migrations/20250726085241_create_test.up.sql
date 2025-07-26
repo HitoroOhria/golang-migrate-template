@@ -1,0 +1,6 @@
+CREATE TABLE `test` (
+    `id` INT NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `name` VARCHAR(255) NOT NULL COMMENT '名前',
+    `time` DATETIME COMMENT '日時',
+    PRIMARY KEY(`id`)
+) COMMENT='テストテーブル';
