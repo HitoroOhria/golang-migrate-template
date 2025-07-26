@@ -50,6 +50,12 @@ Database drivers: stub, mysql
 
 ## Usage of this repository
 
+### Requirements
+
+- Install [Docker](https://docs.docker.com/engine/install/)
+- Install [Docker Compose](https://docs.docker.com/compose/install/)
+- Install [Task](https://taskfile.dev/installation/)
+
 ### Available Commands
 
 ```shell
