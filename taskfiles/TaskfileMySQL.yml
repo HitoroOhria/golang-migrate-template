@@ -1,6 +1,10 @@
 version: "3"
 
 vars:
+  # Migrate settings
+  MIGRATION_DIR: migrations
+  MIGRATION_TIMESTAMP_TZ: Asia/Tokyo
+  # MySQL settings
   MYSQL_DATABASE: test
   MYSQL_LOCAL_HOST: 127.0.0.1
   MYSQL_CONTAINER_HOST: mysql
@@ -8,7 +12,6 @@ vars:
   MYSQL_CONTAINER_PORT: 3306
   MYSQL_ROOT_USER: root
   MYSQL_ROOT_PASSWORD: root
-  MIGRATION_DIR: migrations
 
 tasks:
   run:
@@ -34,7 +37,7 @@ tasks:
     cmds:
       - task: run
         vars:
-          CMD: create -ext sql -dir {{.MIGRATION_DIR}} -tz "Asia/Tokyo" {{.NAME}}
+          CMD: create -ext sql -dir {{.MIGRATION_DIR}} -tz {{.MIGRATION_TIMESTAMP_TZ}} {{.NAME}}
     requires:
       vars: [ NAME ]
 
