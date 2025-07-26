@@ -2,9 +2,9 @@ version: "3"
 
 includes:
   compose:
-    taskfile: TaskfileCompose.yml
+    taskfile: ./taskfiles/TaskfileCompose.yml
   mysql:
-    taskfile: TaskfileMySQL.yml
+    taskfile: ./taskfiles/TaskfileMySQL.yml
 
 tasks:
   default:
