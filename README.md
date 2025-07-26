@@ -3,7 +3,13 @@
 The following command sample:
 
 - database url for golang-migrate
+  ```shell
+  $  migrate -database "mysql://root:root@tcp(127.0.0.1:3306)/test" up 
+  ```
 - create migration file command
+  ```shell
+  $ migrate create -ext sql -dir migrations -tz Asia/Tokyo create_test
+  ```
 
 ## Usage of golang-migrate
 
